@@ -1,0 +1,87 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: none;
+}
+
+figure {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clockHead {
+  position: fixed;
+  font-weight:bold;
+  font-family: helvetica;
+font-size: 12pt;
+  top: 230px;
+  left: 45.5%;
+  font-size : "80px"
+}
+.clock3 {
+  position: fixed;
+  top: 250px;
+  left: 46.5%;
+  width: 100px;
+  height: 100px;
+  border: 8px solid black;
+  border-radius: 100%;
+  background: #0099CC;
+}
+.clock3 div {
+  position: absolute;
+  border-radius: 50px;
+  transform: translate(-50%, -50%);
+  font: 400 20px 'Montserrat';
+}
+.clock3 .twelve3 {
+  top: 20px;
+  left: 50%;
+}
+.clock3 .six3 {
+  bottom: 0;
+  left: 50%;
+}
+.clock3 .three3 {
+  top: 50%;
+  left: 20px;
+}
+.clock3 .nine3 {
+  top: 50%;
+  right: 10px;
+}
+.clock3 .hour-hand3, .clock3 .minute-hand3, .clock3 .second-hand3 {
+  top: 50%;
+  left: 50%;
+  transform-origin: top center;
+  background: black;
+}
+.clock3 .hour-hand3 {
+  width: 3pxpx;
+  height: 25px;
+  transform: translateX(-50%) rotate(180deg);
+}
+.clock3 .minute-hand3 {
+  width: 2px;
+  height: 32px;
+  transform: translateX(-50%) rotate(180deg);
+}
+.clock3 .second-hand3 {
+  width: 1px;
+  height: 38px;
+  transform: translateX(-50%) rotate(180deg);
+}
+.clock3 .center3 {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: black;
+}

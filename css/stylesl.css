@@ -1,0 +1,42 @@
+ /*-----------*\
+/*    RESET   	\___________________________________________________ */
+
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+
+* 										{ -webkit-tap-highlight-color: rgba(0,0,0,0); box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; -ms-box-sizing: border-box; }
+
+
+.input-box 								{ background: #7F8C8D; padding: 18px; }
+.output 				{ text-align:center; width: 50%; margin: 0 auto; height: 48px; border: none; padding: 0 15px; font: 400 16px/48px 'Open Sans',sans-serif; color: #ffffff; background: rgba(0,0,0,.45);  }
+
+ /*-----------*\
+/*    SLIDER   	\___________________________________________________ */
+
+span.slider-tut 						{ width: 100%; display: block; text-align: center; font: 400 10px/16px 'Open Sans',sans-serif; color: #ffffff; margin-bottom: -10px; margin-top: 14px; }
+
+.slider,
+.grip,
+.grip-ridges,
+.grip-ridges li,
+.track,
+.track-division 						{ -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; }
+
+
+.slider 								{ background: #95A5A6; width: 100%; height: 52px; position: relative; overflow: hidden; }
+.grip 									{ z-index: 9; height: 52px; background: #c0392b; background: -moz-linear-gradient(left, #c0392b 0%, #c0392b 50%, #e74c3c 51%, #e74c3c 100%); background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c0392b), color-stop(50%,#c0392b), color-stop(51%,#e74c3c), color-stop(100%,#e74c3c)); background: -webkit-linear-gradient(left, #c0392b 0%,#c0392b 50%,#e74c3c 51%,#e74c3c 100%); background: -o-linear-gradient(left, #c0392b 0%,#c0392b 50%,#e74c3c 51%,#e74c3c 100%); background: -ms-linear-gradient(left, #c0392b 0%,#c0392b 50%,#e74c3c 51%,#e74c3c 100%); background: linear-gradient(to right, #c0392b 0%,#c0392b 50%,#e74c3c 51%,#e74c3c 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c0392b', endColorstr='#e74c3c',GradientType=1 ); position: absolute; cursor: pointer; left: 0; }
+
+.grip:before 							{ z-index: 3; content: ''; height: 0; position: absolute; width: 0; border: 10px solid transparent; border-left-color: #e74c3c; right: -20px; top: 50%; margin-top: -10px; }
+.grip:after 							{ z-index: 3; content: ''; height: 0; position: absolute; width: 0; border: 10px solid transparent; border-right-color: #c0392b; left: -20px; top: 50%; margin-top: -10px; }
+
+.grip-ridges 							{ width: 30px; height: 60%; position: relative; top: 20%; left: 50%; margin-left: -15px; overflow: hidden; }
+.grip-ridges li 						{ width: 4px; height: 100%; margin: 0 3px; background: #A11F13; float: left; }
+
+.track 									{ overflow: hidden; height: 100%; }
+.track-division 						{ float: left; height: 100%;  border-right: 1px solid #7F8C8D; }
+.track-division:first-child 			{ border-left: none; }

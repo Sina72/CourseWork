@@ -1,0 +1,78 @@
+body {
+  background-color: yellow;
+  overflow: hidden;
+}
+
+@-webkit-keyframes moving {
+  from { left: -1200px; }
+  100% { left: 100%; }
+  to { left: 105%; }
+}
+
+@-webkit-keyframes shaking {
+  0% {-webkit-transform: rotate(0deg) skew(0deg, 0deg) translate(0px, 0px); }
+  40% {-webkit-transform: rotate(2deg) skew(2deg, 2deg) translate(-1px, -1px); }
+  100% {-webkit-transform: rotate(0deg) skew(0deg, 0deg) translate(0px, 0px); }
+}
+
+.train {
+  -webkit-animation-name: ;
+    -webkit-animation-duration: ;
+    -webkit-animation-timing-function: ;
+    -webkit-animation-iteration-count: ;
+  bottom: 40px;
+  display: block;
+  position: absolute;
+  width: 1200px;
+}
+
+.train .wagon {
+  -webkit-animation: shaking 2s linear infinite;
+  border: 4px solid #000;
+  border-radius: 8px;
+  box-shadow: 0 60px 50px 1px #000;
+  display: inline-block;
+  height: 40px;
+  margin: 0 10px 0 0;
+  position: relative;
+  width: 250px;
+}
+
+.train .wagon:before, .wagon:after {
+  background-color: #333;
+  border: 3px solid #000;
+  border-radius: 20px 14px;
+  bottom: -28px;
+  content: ' ';
+  display: block;
+  height: 20px;
+  margin: 0 10px;
+  position: absolute;
+  width: 20px;
+}
+
+.train .wagon:before {
+  right: 0;
+}
+
+.train .wagon:last-child {
+  box-shadow: 0 60px 80px 1px #000;
+  height: 60px;
+  margin-right: 0;
+  background-color: red;
+}
+
+.train .wagon:nth-child(1) {
+  background-color: yellow;
+}
+
+.train .wagon:nth-child(2) { 
+  background-color: #00FFFF;
+}
+
+.train .wagon:nth-child(3) {
+  background-color: #0a0;
+}
+.train .wagon:nth-child(4) {
+  background-color: yellow;
+}

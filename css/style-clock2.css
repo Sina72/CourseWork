@@ -1,0 +1,78 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: none;
+}
+
+figure {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clock2 {
+  position: relative;
+  bottom: -205px;
+  left: -50px;
+  width: 100px;
+  height: 100px;
+  border: 8px solid black;
+  border-radius: 100%;
+  background: #00FFFF;
+}
+.clock2 div {
+  position: absolute;
+  border-radius: 50px;
+  transform: translate(-50%, -50%);
+  font: 400 20px 'Montserrat';
+}
+.clock2 .twelve2 {
+  top: 20px;
+  left: 50%;
+}
+.clock2 .six2 {
+  bottom: 0;
+  left: 50%;
+}
+.clock2 .three2 {
+  top: 50%;
+  left: 20px;
+}
+.clock2 .nine2 {
+  top: 50%;
+  right: 10px;
+}
+.clock2 .hour-hand2, .clock2 .minute-hand2, .clock2 .second-hand2 {
+  top: 50%;
+  left: 50%;
+  transform-origin: top center;
+  background: black;
+}
+.clock2 .hour-hand2 {
+  width: 3pxpx;
+  height: 25px;
+  transform: translateX(-50%) rotate(180deg);
+}
+.clock2 .minute-hand2 {
+  width: 2px;
+  height: 32px;
+  transform: translateX(-50%) rotate(180deg);
+}
+.clock2 .second-hand2 {
+  width: 1px;
+  height: 38px;
+  transform: translateX(-50%) rotate(180deg);
+}
+.clock2 .center2 {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: black;
+}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<title>Leading Clocks Lag</title>
+	
+	<!-- The sources in this code  -->
+    <link rel="stylesheet" href="css/style-t.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="css/reset-clock.css">
+    <link rel="stylesheet" href="css/style-clock.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="css/style-clock2.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="css/style-clock3.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="css/stylesl.css" media="screen" type="text/css" />
+	<script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+	<script src='http://students.philau.edu/ward8012/labs/slider.js'></script>
+	<script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+	<script src='js/math.js'></script>
+  <script src='https://jqueryrotate.googlecode.com/files/jQueryRotate.js'></script>
+</head>
+
+<body>
+
+<!-- The top slider bar and the red button -->
+<div class="input-box phy-body">
+		<div id="awesome-output" class="output">--</div>
+		<div class="button-frame plastic">
+  <div class="the-button plastic" onclick="run()"></div>
+  </div>
+  <span class="slider-tut">Touch and drag to adjust the speed of the train as a portion of speed of light(C = 299 792 458 m/s). When ready, press the red button to start! </br> </span>
+	</div>
+	<div id="slider" class="slider phy-body" min="0" max="0.99" step="0.01" output="awesome-output" output-append="C" onclick="main()"></div>
+	
+	
+	
+  <script type="text/javascript">
+  
+  // Initializing the global variable which will be used for calculations
+  var slider = new Slider();
+  var delay = 600;
+  var restLength = 1200.00;
+  var checking = 0;
+  var speed;
+  var gamma;
+  var trainContractedLength;
+  var timeError;
+  var dilatedTime;
+  var animationSpeed;
+  var clockProperPlace;
+  var wagonContractedLength;
+  
+  // This function is triggered when the slide is moved. It records the speed and does the proper calculations in order to apply the relativistic effects to the train.
+  //However it does not assign anything to the train it only does the calculations as the slider is moved.
+  main = function(){
+	var speedInput = document.getElementById("awesome-output").innerHTML;
+	var	speedSplit = speedInput.split("C");
+	speed = parseFloat(speedSplit[0],10);
+	console.log(speed);
+	var speedSpeed = math.pow(speed,2)
+	gamma = 1 / math.sqrt(1 - speedSpeed)
+	trainContractedLength = restLength/gamma;
+	wagonContractedLength = 250/gamma;
+	clockProperPlace = 990/gamma;
+	animationSpeed = 8/speed;
+	timeError = restLength*speed/((1-(math.pow(speed,2)))*299792458)
+	dilatedTime = 190*gamma;
+	console.log($('-webkit-keyframes moving').css('from'));
+	console.log(timeError);
+}
+
+
+// The following functions are used to change length of the animation according to the contracted size of the train
+function findKeyframesRule(rule)
+    {
+        // gather all stylesheets into an array
+        var ss = document.styleSheets;
+        
+        // loop through the stylesheets
+        for (var i = 0; i < ss.length; ++i) {
+            
+            // loop through all the rules
+            for (var j = 0; j < ss[i].cssRules.length; ++j) {
+                
+                // find the -webkit-keyframe rule whose name matches our passed over parameter and return that rule
+                if (ss[i].cssRules[j].type == window.CSSRule.WEBKIT_KEYFRAMES_RULE && ss[i].cssRules[j].name == rule)
+                    return ss[i].cssRules[j];
+            }
+        }
+        
+        // rule not found
+        return null;
+    }
+
+// remove old keyframes and add new ones
+function trainSizeCalibratrion()
+    {
+        // find our -webkit-keyframe rule
+        var keyframes = findKeyframesRule("moving");
+        // remove the existing 0% and 100% rules
+        keyframes.deleteRule("from");
+        // create new 0% and 100% rules with random numbers
+        keyframes.insertRule("from { left: -"+trainContractedLength +"px; }");
+    }
+	
+	
+// This function triggers after the Red Button is Pressed.
+//This function assigns the values for the train's animation and it creates the calculation box and the description box
+run = function(){
+// It will reload the page if the train is already moving
+	if (checking == 1){
+		location.reload();
+	}
+	else if (document.getElementById("awesome-output").innerHTML != "--" && document.getElementById("awesome-output").innerHTML != "0C" ){
+		document.getElementById("sinaTrain").innerHTML = '<div class="train"><figure> <div class="clock2"> <div class="hour-hand2"></div> <div class="minute-hand2"></div> <div class="second-hand2"></div> <div class="center2"></div> </div><div class="clock"><div class="hour-hand"></div><div class="minute-hand"></div><div class="second-hand"></div><div class="center"></div></div></figure><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div></div>';
+	
+	$( document ).ready(function() {
+	$('.train').css('webkit-animation-duration', animationSpeed+"s");
+	$('.train').css('webkit-animation-name', "moving");
+	$('.train').css('webkit-animation-timing-function', "linear");
+	$('.train').css('webkit-animation-iteration-count', "infinite");
+	timer();
+	});
+	
+	checking++;
+	
+	$('.wagon').css('width', wagonContractedLength + 'px');
+	$('.clock').css('left', clockProperPlace + 'px');
+	$('.train').css('webkit-animation-play-state', 'running');
+	document.getElementById("sinaTrain2").innerHTML = "<div class=reload onclick='run()' >&#x21bb;</div>"
+	document.getElementById("sinaTable").innerHTML = "<table class='boldtable' id='table'   style='width:40%' ><tr><td> Train's Speed : </td><td>"+299792458*speed+" </td><td> m/s </td></tr><tr><td> Train's Rest Length:</td><td> 1200 </td><td>m </td> </tr><tr><td> Factor Gamma (&#611;):</td><td> "+math.round(gamma, 3)+"</td></tr><tr><td> Train's Contracted Length:</td><td> "+math.round(trainContractedLength, 3)+"</td><td>m</td>  </tr><tr><td> Time Synchronization Error: </td><td> "+timeError+" </td><td>seconds</td> </tr></table><table class='boldtable2' style='width:40%' ><tr><td>In this example, you are a stationary observer watching the train. From your prespective, the time in the train is dialated by the factor of &#611; and the length of the train is contracted by the factor of &#611;. Since the train is moving away from you, the information from the front of the train reaches you by a time lag. In this example, the time syncronization error is amplified by 10&#x2076; inorder to be visualized.</td></tr></table>"
+	trainSizeCalibratrion();
+}
+}
+//$('.train').css('webkit-animation-duration', animationSpeed+'s');
+//console.log($('.train').css('webkit-animation-duration'));
+
+/*
+$(document).ready(function(){
+
+setInterval(function() {
+	document.getElementById("sinaTrain2").innerHTML = '<div class="train"><figure> <div class="clock2"> <div class="hour-hand2"></div> <div class="minute-hand2"></div> <div class="second-hand2"></div> <div class="center2"></div> </div><div class="clock"><div class="hour-hand"></div><div class="minute-hand"></div><div class="second-hand"></div><div class="center"></div></div></figure><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div></div>';
+	}, 0.001);
+document.getElementById("sinaTrain2").innerHTML = '<div class="train"><figure> <div class="clock2"> <div class="hour-hand2"></div> <div class="minute-hand2"></div> <div class="second-hand2"></div> <div class="center2"></div> </div><div class="clock"><div class="hour-hand"></div><div class="minute-hand"></div><div class="second-hand"></div><div class="center"></div></div></figure><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div></div>';
+
+});
+*/
+timer = function(){
+  timeC1 = function() {
+  var seconds = 180;
+  var minutes = 180;
+  var hours = 180;
+  setInterval(function() {
+    seconds++;
+    $('.second-hand').css('transform', 'rotate(' + seconds + 'deg)');
+    if(seconds === 540) {
+      seconds = 180;
+      minutes += 360/60;
+      $('.minute-hand').css('transform', 'rotate(' + minutes + 'deg)');
+    }
+    if(minutes === 540) {
+      minutes = 180;
+      hours += 360/12;
+      $('.hour-hand').css('transform', 'rotate(' + hours + 'deg)');
+    }
+  }, dilatedTime);
+}
+
+timeC3 = function() {
+  var seconds = 180;
+  var minutes = 180;
+  var hours = 180;
+  setInterval(function() {
+    seconds++;
+    $('.second-hand3').css('transform', 'rotate(' + seconds + 'deg)');
+    if(seconds === 540) {
+      seconds = 180;
+      minutes += 360/60;
+      $('.minute-hand3').css('transform', 'rotate(' + minutes + 'deg)');
+    }
+    if(minutes === 540) {
+      minutes = 180;
+      hours += 360/12;
+      $('.hour-hand3').css('transform', 'rotate(' + hours + 'deg)');
+    }
+  }, 190);
+}
+
+  
+  timeC2 = function() {
+  var seconds = 180;
+  var minutes = 180;
+  var hours = 180;
+  setInterval(function() {
+    seconds++;
+    $('.second-hand2').css('transform', 'rotate(' + seconds + 'deg)');
+    if(seconds === 540) {
+      seconds = 180;
+      minutes += 360/60;
+      $('.minute-hand2').css('transform', 'rotate(' + minutes + 'deg)');
+    }
+    if(minutes === 540) {
+      minutes = 180;
+      hours += 360/12;
+      $('.hour-hand2').css('transform', 'rotate(' + hours + 'deg)');
+    }
+  }, dilatedTime);
+}
+
+timeDelay = parseInt(1000000000 * timeError );
+
+setTimeout(function() {
+timeC1();
+}, timeDelay);
+timeC2();
+timeC3();
+console.log(timeDelay);
+//setTimeout(function(){timeC2();setTimeout(function(){timeC1();},5000);},5000);
+}
+/*
+ var delay=1800;//1 seconds
+    setTimeout(function(){
+    document.getElementById("trainTwo").innerHTML = '<div class="train"> <figure> <div class="clock"> <div class="hour-hand"></div> <div class="minute-hand"></div> <div class="second-hand"></div><div class="center"></div></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div></div></figure></div>'
+    },delay);
+*/
+  </script>
+  
+	<div class="clockHead">Rest Frame Clock</div>
+	
+			<div class="clock3">
+				
+				<div class="hour-hand3"></div>
+				<div class="minute-hand3"></div>
+				<div class="second-hand3"></div>
+				<div class="center3"></div>
+				<div class="twelve3"></div>
+				<div class="three3"></div>
+				<div class="six3"></div>
+				<div class="nine3"></div>
+			</div>
+	
+	<div id="sinaTrain2">
+	</div>
+	<div id="sinaTable">
+	</div>
+		<div id="sinaTrain">
+	<!--	<div class="train">
+			<figure>
+			<div class="clock2">
+				<div class="hour-hand2"></div>
+				<div class="minute-hand2"></div>
+				<div class="second-hand2"></div>
+				<div class="center2"></div>
+			</div>
+			<div class="clock">
+				<div class="hour-hand"></div>
+				<div class="minute-hand"></div>
+				<div class="second-hand"></div>
+				<div class="center"></div>
+			</div>
+			</figure>
+	<div class="wagon"></div>
+	<div class="wagon"></div>
+	<div class="wagon"></div>
+	<div class="wagon"></div> 
+  </div> -->
+  </div>
+  
+
+</body>
+
+</html>
