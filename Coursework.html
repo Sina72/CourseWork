@@ -134,19 +134,8 @@ run = function(){
 	trainSizeCalibratrion();
 }
 }
-//$('.train').css('webkit-animation-duration', animationSpeed+'s');
-//console.log($('.train').css('webkit-animation-duration'));
 
-/*
-$(document).ready(function(){
-
-setInterval(function() {
-	document.getElementById("sinaTrain2").innerHTML = '<div class="train"><figure> <div class="clock2"> <div class="hour-hand2"></div> <div class="minute-hand2"></div> <div class="second-hand2"></div> <div class="center2"></div> </div><div class="clock"><div class="hour-hand"></div><div class="minute-hand"></div><div class="second-hand"></div><div class="center"></div></div></figure><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div></div>';
-	}, 0.001);
-document.getElementById("sinaTrain2").innerHTML = '<div class="train"><figure> <div class="clock2"> <div class="hour-hand2"></div> <div class="minute-hand2"></div> <div class="second-hand2"></div> <div class="center2"></div> </div><div class="clock"><div class="hour-hand"></div><div class="minute-hand"></div><div class="second-hand"></div><div class="center"></div></div></figure><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div></div>';
-
-});
-*/
+// The following timer function start the three clocks shown in the program
 timer = function(){
   timeC1 = function() {
   var seconds = 180;
@@ -217,16 +206,14 @@ timeC1();
 timeC2();
 timeC3();
 console.log(timeDelay);
-//setTimeout(function(){timeC2();setTimeout(function(){timeC1();},5000);},5000);
+
 }
-/*
- var delay=1800;//1 seconds
-    setTimeout(function(){
-    document.getElementById("trainTwo").innerHTML = '<div class="train"> <figure> <div class="clock"> <div class="hour-hand"></div> <div class="minute-hand"></div> <div class="second-hand"></div><div class="center"></div></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div><div class="wagon"></div></div></figure></div>'
-    },delay);
-*/
+
+// This alerts the user that he/she can only use chrome.
+alert("This program only runs with Google Chrome, if you do not have it, it can be installed from here : www.google.com/chrome/");
   </script>
   
+  <!--- The skelleton of the code where the attributes will be saved in javascript sode --->
 	<div class="clockHead">Rest Frame Clock</div>
 	
 			<div class="clock3">
@@ -246,26 +233,6 @@ console.log(timeDelay);
 	<div id="sinaTable">
 	</div>
 		<div id="sinaTrain">
-	<!--	<div class="train">
-			<figure>
-			<div class="clock2">
-				<div class="hour-hand2"></div>
-				<div class="minute-hand2"></div>
-				<div class="second-hand2"></div>
-				<div class="center2"></div>
-			</div>
-			<div class="clock">
-				<div class="hour-hand"></div>
-				<div class="minute-hand"></div>
-				<div class="second-hand"></div>
-				<div class="center"></div>
-			</div>
-			</figure>
-	<div class="wagon"></div>
-	<div class="wagon"></div>
-	<div class="wagon"></div>
-	<div class="wagon"></div> 
-  </div> -->
   </div>
   
 
